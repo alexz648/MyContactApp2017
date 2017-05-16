@@ -26,26 +26,27 @@
         android:onClick="addData"
         android:layout_marginTop="69dp"
         android:layout_below="@+id/editText_phone"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText_email"
-        android:layout_alignTop="@+id/textView"
-        android:layout_alignStart="@+id/editText_phone" />
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignStart="@+id/editText_phone"
+        android:id="@+id/editText_email" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="EMAIL: "
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
+        android:layout_marginTop="26dp"
         android:layout_below="@+id/editText_name"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
         android:ems="10"
         android:id="@+id/editText_name"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/editText_email" />
+        android:layout_alignEnd="@+id/button2" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -63,15 +64,15 @@
         android:ems="10"
         android:id="@+id/editText_phone"
         android:layout_marginTop="36dp"
-        android:layout_below="@+id/editText_email"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_below="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="PHONE: "
-        android:id="@+id/textView2"
+        android:id="@+id/textView3"
         android:layout_alignTop="@+id/editText_phone"
         android:layout_alignParentStart="true" />
 
@@ -82,6 +83,8 @@
         android:id="@+id/button2"
         android:layout_alignTop="@+id/button"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="44dp" />
+        android:layout_marginEnd="44dp"
+        android:onClick="viewData"
+        android:nestedScrollingEnabled="true" />
 
 </RelativeLayout>
