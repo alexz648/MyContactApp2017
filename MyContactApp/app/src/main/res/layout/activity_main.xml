@@ -15,25 +15,73 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="NAME:"
         android:id="@+id/editText_name"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/editText_name"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD CONTACT"
+        android:id="@+id/button"
+        android:onClick="addData"
+        android:layout_marginTop="69dp"
+        android:layout_below="@+id/editText_phone"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_email"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignStart="@+id/editText_phone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="EMAIL: "
+        android:id="@+id/textView"
+        android:layout_below="@+id/editText_name"
         android:layout_alignParentStart="true"
         android:layout_marginTop="33dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/editText_name"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/editText_name"
-        android:id="@+id/editText" />
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_name"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/editText_email" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editText_phone"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/editText_email"
+        android:layout_toEndOf="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="PHONE: "
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/editText_phone"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD DATA"
-        android:id="@+id/button"
-        android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginTop="184dp" />
+        android:text="VIEW CONTACTS"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="44dp" />
 
 </RelativeLayout>
