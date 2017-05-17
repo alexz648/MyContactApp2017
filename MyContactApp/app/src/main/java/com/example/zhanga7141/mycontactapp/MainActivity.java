@@ -1,6 +1,7 @@
 package com.example.zhanga7141.mycontactapp;
 
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,21 +28,21 @@ public class MainActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.editText_name);
         editPhone = (EditText) findViewById(R.id.editText_phone);
         editEmail = (EditText) findViewById(R.id.editText_email);
+
+
     }
 
-    public void addData(View v){
-         boolean isInserted = myDb.insertData(editName.getText().toString(), editPhone.getText().toString(), editEmail.getText().toString());
+    public void addData(View v) {
+        boolean isInserted = myDb.insertData(editName.getText().toString(), editPhone.getText().toString(), editEmail.getText().toString());
 
-        if(isInserted == true) {
+        if (isInserted == true) {
             Log.d("MyContact", "Data insertion successful");
             //Create toast message to user indicating data inserted correctly
-            Toast.makeText(getApplicationContext(), "successful", Toast.LENGTH_SHORT).show();
-        }
-
-        else {
+            Toast.makeText(getApplicationContext(), "Data insertion successful", Toast.LENGTH_SHORT).show();
+        } else {
             Log.d("MyContact", "Data insertion NOT successful");
             //Create toast message to user indicating data inserted incorrectly
-            Toast.makeText(getApplicationContext(), "unsuccessful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Data insertion unsuccessful", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -61,10 +62,36 @@ public class MainActivity extends AppCompatActivity {
         //      append each COL (method append in string buffer class) to buffer
         //      use getString method
 
-        showMessage("Data", buffer.toString());
+        while(res.moveToNext())
+        {
+            for (int col = 1; col <= 3; col++)
+            {
+                buffer.append(res.getString(col));
+                buffer.append("\n");
+            }
+
+            buffer.append("\n");
+        }
+
+        showMessage("CONTACTS", buffer.toString());
+
     }
 
     private void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+    }
+
+    public String searchName()
+    {
+        return null;
+    }
+
+    public void deleteAll()
+    {
 
     }
 }
