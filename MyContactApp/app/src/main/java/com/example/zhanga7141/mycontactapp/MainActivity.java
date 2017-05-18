@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editName;
     EditText editEmail;
     EditText editPhone;
+    EditText searchName;
     Button btnAddData;
 
     @Override
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.editText_name);
         editPhone = (EditText) findViewById(R.id.editText_phone);
         editEmail = (EditText) findViewById(R.id.editText_email);
+        searchName = (EditText) findViewById(R.id.editText_search);
 
 
     }
@@ -85,13 +87,37 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public String searchName()
-    {
-        return null;
+    public void searchName(View v) {
+        Cursor res = myDb.getAllData();
+        if (res.getCount() == 0) {
+            showMessage("Error", "No data found in database");
+            Log.d("MyDatabase", "No data found in database");
+            Toast.makeText(getApplicationContext(), "No data found in database", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        StringBuffer buffer = new StringBuffer();
+
+        res.moveToFirst();
+
+        while (res.moveToNext())
+        {
+            if (res.getString(0).equals(searchName.getText()))
+            {
+                showMessage("!!!!!!", "No data found in database");
+            }
+
+            else
+            {
+                showMessage("????", "No data found in database!");
+            }
+
+        }
+
+
+     //   showMessage("Contacts with the same name", buffer);
+
+
     }
 
-    public void deleteAll()
-    {
-
-    }
 }

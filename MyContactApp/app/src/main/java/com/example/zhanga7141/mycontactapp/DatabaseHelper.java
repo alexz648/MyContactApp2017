@@ -53,4 +53,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+  /* public Cursor getSearchData() {
+       SQLiteDatabase db = this.getWritableDatabase();
+       String select =
+       Cursor res = db.rawQuery(select, null);
+    }
+*/
 }
