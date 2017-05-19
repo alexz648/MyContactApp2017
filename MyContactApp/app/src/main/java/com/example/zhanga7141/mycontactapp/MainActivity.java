@@ -79,6 +79,39 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public String searchContact() {
+        String search = searchName.getText().toString();
+        Cursor res = myDb.getAllData();
+        if (res.getCount() == 0) {
+            showMessage("Error", "No data found in database");
+            Log.d("My Contact", "No Data found in database");
+
+            int duration = Toast.LENGTH_SHORT;
+            Toast noData = Toast.makeText(this, "No data found in database", duration);
+            noData.show();
+        }
+
+        StringBuffer buffer = new StringBuffer();
+
+        while (res.moveToNext()) {
+            if (res.getString(1).toUpperCase().equals(search.toUpperCase())) {
+                return ("Name: " + res.getString(1)
+                        + "    Email: " + res.getString(2)
+                        + "    Phone Number: " + res.getString(3));
+            }
+        }
+        return "not found";
+    }
+
+        public void searchContact (View v){
+        showMessage("Result", searchContact());
+        Log.d("Result", searchContact());
+
+     //   showMessage("Contacts with the same name", buffer);
+
+
+    }
+
     private void showMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -86,38 +119,4 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(message);
         builder.show();
     }
-
-    public void searchName(View v) {
-        Cursor res = myDb.getAllData();
-        if (res.getCount() == 0) {
-            showMessage("Error", "No data found in database");
-            Log.d("MyDatabase", "No data found in database");
-            Toast.makeText(getApplicationContext(), "No data found in database", Toast.LENGTH_SHORT);
-            return;
-        }
-
-        StringBuffer buffer = new StringBuffer();
-
-        res.moveToFirst();
-
-        while (res.moveToNext())
-        {
-            if (res.getString(0).equals(searchName.getText()))
-            {
-                showMessage("!!!!!!", "No data found in database");
-            }
-
-            else
-            {
-                showMessage("????", "No data found in database!");
-            }
-
-        }
-
-
-     //   showMessage("Contacts with the same name", buffer);
-
-
-    }
-
 }
