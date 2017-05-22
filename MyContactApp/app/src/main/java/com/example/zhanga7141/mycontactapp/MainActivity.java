@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editEmail;
     EditText editPhone;
     EditText searchName;
+    String[] fields;
     Button btnAddData;
 
     @Override
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         editPhone = (EditText) findViewById(R.id.editText_phone);
         editEmail = (EditText) findViewById(R.id.editText_email);
         searchName = (EditText) findViewById(R.id.editText_search);
+
+        fields = new String[] {"Name: ", "Phone: ", "Email: "};
 
 
     }
@@ -79,37 +82,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String searchContact() {
+    public void searchContact(View v) {
+
+        Log.d("My Contact app", "Search method used");
+
         String search = searchName.getText().toString();
-        Cursor res = myDb.getAllData();
-        if (res.getCount() == 0) {
-            showMessage("Error", "No data found in database");
-            Log.d("My Contact", "No Data found in database");
-
-            int duration = Toast.LENGTH_SHORT;
-            Toast noData = Toast.makeText(this, "No data found in database", duration);
-            noData.show();
-        }
-
         StringBuffer buffer = new StringBuffer();
+        Cursor res = myDb.getAllData();
+        res.moveToFirst();
 
-        while (res.moveToNext()) {
-            if (res.getString(1).toUpperCase().equals(search.toUpperCase())) {
-                return ("Name: " + res.getString(1)
-                        + "    Email: " + res.getString(2)
-                        + "    Phone Number: " + res.getString(3));
+        for (int i = 0; i < res.getCount(); i++) {
+            if (res.getString(1).equals(search)) {
+                for (int j = 1; j <= 3; j++) {
+                    buffer.append(fields[j - 1]);
+                    buffer.append(res.getString(j));
+                    buffer.append("\n");
+                }
             }
+            buffer.append("\n");
+            res.moveToNext();
         }
-        return "not found";
-    }
 
-        public void searchContact (View v){
-        showMessage("Result", searchContact());
-        Log.d("Result", searchContact());
-
-     //   showMessage("Contacts with the same name", buffer);
-
-
+        if (buffer.toString().equals("")) {
+            showMessage("No match found", "");
+        } else {
+            showMessage(" Search Results", buffer.toString());
+        }
+        searchName.setText("");
     }
 
     private void showMessage(String title, String message) {
